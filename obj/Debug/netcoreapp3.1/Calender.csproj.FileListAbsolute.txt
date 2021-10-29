@@ -1,0 +1,14 @@
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\bin\Debug\netcoreapp3.1\Calender.exe
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\bin\Debug\netcoreapp3.1\Calender.deps.json
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\bin\Debug\netcoreapp3.1\Calender.runtimeconfig.json
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\bin\Debug\netcoreapp3.1\Calender.runtimeconfig.dev.json
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\bin\Debug\netcoreapp3.1\Calender.dll
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\bin\Debug\netcoreapp3.1\Calender.pdb
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.csproj.AssemblyReference.cache
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.AssemblyInfoInputs.cache
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.AssemblyInfo.cs
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.csproj.CoreCompileInputs.cache
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.dll
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.pdb
+C:\Users\brandon.gunthner\Desktop\ProgProj\Calender\obj\Debug\netcoreapp3.1\Calender.genruntimeconfig.cache
