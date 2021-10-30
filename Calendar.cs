@@ -71,34 +71,6 @@ namespace Calendar
     
     class Calendar
     {
-        static string[] ReadCalendar(string location)
-        {
-            bool input = true;
-            do
-            {
-                try
-                {
-                    string[] readFile = File.ReadAllLines(@location);
-                    return readFile;
-                }
-                catch (IOException e)
-                {
-                    Console.WriteLine("File not found/Bad file. Enter 1 to try again or any other key to exit:");
-                    string exitConfirm = Console.ReadLine();
-                    if (exitConfirm == "1")
-                    { continue; }
-                    else
-                    {
-                        input = false;
-                    }
-                }
-            }
-            while (input == true);
-            string[] empty = new string[0];
-            empty[0] = "nul";
-            return empty;
-        }
-        
         static List<Meeting> CalendarFill(string[] calendar) 
         {
             List<Meeting> currentCalendar = new List<Meeting>();
@@ -233,22 +205,14 @@ namespace Calendar
                     {
                         case "1":
 
-                            Console.WriteLine("Enter the file location for the calendar:");
+                            Console.WriteLine("Enter the location for the calendar file:");
                             string fileLocation = Console.ReadLine();
-                            string[] calendarStrings = ReadCalendar(@fileLocation);
-                            if (calendarStrings[0] == "nul")
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                currentCalendar = CalendarFill(calendarStrings);
-                                Console.WriteLine("File read successfully");
-                            }
+                            string[] calendarStrings = File.ReadAllLines(@fileLocation);
+                            currentCalendar = CalendarFill(calendarStrings);
+                            Console.WriteLine("File read successfully");
                             CalendarMenu(currentCalendar);
                             CalendarSave(currentCalendar, fileLocation);
                             break;
-
 
                         case "2":
 
@@ -268,11 +232,11 @@ namespace Calendar
                 }
                 catch(IOException e) 
                 {
-                    Console.WriteLine("Error handling file, could not open/save");  
+                    Console.WriteLine("Error handling file, could not open/save\n");  
                 }
                 catch (FormatException e)
                 {
-                    Console.WriteLine("Invalid data found in file, could not populate calendar");
+                    Console.WriteLine("Invalid data found in file, could not populate calendar\n");
                    
                 }
                 catch (Exception e)
