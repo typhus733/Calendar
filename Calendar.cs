@@ -225,14 +225,14 @@ namespace Calendar
             List<Meeting> currentCalendar = new List<Meeting>();
             do
             {
-                Console.WriteLine("Enter a menu option 1-3:\n1 - Load an existing Calendar, 2 - Make a new Calendar, 3 - Exit program");
+                Console.WriteLine("Enter a menu option 1-3:\n1 - Load an existing Calendar\n2 - Make a new Calendar\n3 - Exit program");
                 string topLevelInput = Console.ReadLine();
-
-                switch (topLevelInput)
+                try
                 {
-                    case "1":
-                        try
-                        {
+                    switch (topLevelInput)
+                    {
+                        case "1":
+
                             Console.WriteLine("Enter the file location for the calendar:");
                             string fileLocation = Console.ReadLine();
                             string[] calendarStrings = ReadCalendar(@fileLocation);
@@ -248,38 +248,36 @@ namespace Calendar
                             CalendarMenu(currentCalendar);
                             CalendarSave(currentCalendar, fileLocation);
                             break;
-                        }
-                        catch(FormatException e)
-                        {
-                            Console.WriteLine("Invalid data found in file, could not populate calendar");
-                            break;
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("Error populating calendar\n");
-                            break;
-                        }
-            
-                    case "2":
-                        try
-                        {
+
+
+                        case "2":
+
                             Console.WriteLine("Enter a location to save calendar:");
                             string saveLocation = Console.ReadLine();
                             CalendarMenu(currentCalendar);
                             CalendarSave(currentCalendar, saveLocation);
                             break;
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("Error populating calendar\n");
+
+                        case "3":
+                            run = false;
                             break;
-                        }
-                    case "3":
-                        run = false;
-                        break;
-                    default:
-                        Console.WriteLine("Input not recognized");
-                        break;
+                        default:
+                            Console.WriteLine("Input not recognized");
+                            break;
+                    }
+                }
+                catch(IOException e) 
+                {
+                    Console.WriteLine("Error handling file, could not open/save");  
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine("Invalid data found in file, could not populate calendar");
+                   
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error populating calendar\n");
                 }
             }
             while (run == true);
