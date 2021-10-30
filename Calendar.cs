@@ -103,7 +103,7 @@ namespace Calendar
                 if ((newEvent.StartDateTime >= meeting.StartDateTime && newEvent.StartDateTime <= meeting.EndDateTime) ||
                     (newEvent.StartDateTime <= meeting.StartDateTime && newEvent.EndDateTime > meeting.StartDateTime))
                 {
-                    Console.WriteLine("Warning: New event overlaps with " + meeting.Title + " (" + meeting.StartDateTime.ToString() + " - " + meeting.EndDateTime.ToString() + ")");
+                    Console.WriteLine("\nWarning: New event overlaps with " + meeting.Title + " (" + meeting.StartDateTime.ToString() + " - " + meeting.EndDateTime.ToString() + ")\n");
                 }
             }
 
@@ -120,7 +120,7 @@ namespace Calendar
                 {
                     if (meeting.StartDateTime <= today && meeting.EndDateTime > today)
                     {
-                        Console.Write(" | " + meeting.Title + " at " + meeting.Location + "\n");
+                        Console.Write(" | " + meeting.Title + " at " + meeting.Location);
                     }
                 }
                 Console.Write("\n");
@@ -133,7 +133,7 @@ namespace Calendar
             bool run = true;
             do
             {
-                Console.WriteLine("Enter a menu option 1-4, calendar will be saved on exit:\n1 - Add event, 2 - Remove event, 3 - Display calendar, 4 - Exit menu");
+                Console.WriteLine("Enter a menu option 1-4, calendar will be saved on exit:\n1 - Add event\n2 - Remove event\n3 - Display calendar\n4 - Exit menu");
                 string menuInput = Console.ReadLine();
                 switch (menuInput)
                 {
@@ -144,25 +144,25 @@ namespace Calendar
                         }
                         catch(FormatException e)
                         {
-                            Console.WriteLine("Invalid date in event, failed to add");
+                            Console.WriteLine("\nInvalid date in event, failed to add\n");
                         }
                         break;
                     case "2":
                         Console.WriteLine("Enter the event Title to remove:");
                         string title = Console.ReadLine();
                         int found = 0;
-                        foreach(Meeting meeting in calendar)
-                        {
-                            if (meeting.Title == title)
+                        for (int x = calendar.Count-1; x > -1; x--)
+                        {   
+                            if (calendar[x].Title == title)
                             {
-                                calendar.Remove(meeting);
+                                calendar.RemoveAt(x);
                                 found = 1;
-                                Console.WriteLine("Event successfully removed");
+                                Console.WriteLine("\nEvent successfully removed\n");
                             }
                         }
                         if (found == 0)
                         {
-                            Console.WriteLine("Event not found in calendar, failed to remove");
+                            Console.WriteLine("\nEvent not found in calendar, failed to remove\n");
                         }
                         break;
                     case "3":
@@ -185,10 +185,10 @@ namespace Calendar
             string saveString = "";
             foreach (Meeting meeting in calendar)
             {
-                saveString += (meeting.Title + " , " + meeting.Location + " , " + meeting.StartDateTime.ToString() + " , " + meeting.EndDateTime.ToString() + "\n");
+                saveString += (meeting.Title + "," + meeting.Location + "," + meeting.StartDateTime.ToString() + "," + meeting.EndDateTime.ToString() + "\n");
             }
             File.WriteAllText(location, saveString);
-            Console.WriteLine("Saved Successfully");
+            Console.WriteLine("\nSaved Successfully\n");
         }
         
         static void Main(string[] args)
@@ -209,7 +209,7 @@ namespace Calendar
                             string fileLocation = Console.ReadLine();
                             string[] calendarStrings = File.ReadAllLines(@fileLocation);
                             currentCalendar = CalendarFill(calendarStrings);
-                            Console.WriteLine("File read successfully");
+                            Console.WriteLine("\nFile read successfully\n");
                             CalendarMenu(currentCalendar);
                             CalendarSave(currentCalendar, fileLocation);
                             break;
@@ -223,9 +223,12 @@ namespace Calendar
                             break;
 
                         case "3":
+
                             run = false;
                             break;
+
                         default:
+
                             Console.WriteLine("Input not recognized");
                             break;
                     }
