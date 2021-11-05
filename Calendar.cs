@@ -4,6 +4,22 @@ using System.Collections.Generic;
 
 namespace Calendar
 {
+    public class EventAddBreak : Exception
+    {
+        public EventAddBreak()
+        {
+        }
+
+        public EventAddBreak(string message) : base(message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public EventAddBreak(string message, Exception inner) : base(message, inner)
+        {
+        }
+    }
+
     public class Meeting
     {
         private string title;
@@ -104,6 +120,17 @@ namespace Calendar
                     (newEvent.StartDateTime <= meeting.StartDateTime && newEvent.EndDateTime > meeting.StartDateTime))
                 {
                     Console.WriteLine("\nWarning: New event overlaps with " + meeting.Title + " (" + meeting.StartDateTime.ToString() + " - " + meeting.EndDateTime.ToString() + ")\n");
+                    Console.WriteLine("Continue to add? 1 to continue or any other key to cancel:");
+                    string confirm = Console.ReadLine();
+
+                    if(confirm == "1")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        throw new EventAddBreak();
+                    }
                 }
             }
 
@@ -141,14 +168,19 @@ namespace Calendar
                         try
                         {   
                             calendar.Add(GetEvent(calendar));
+                            Console.WriteLine("\nEvent add completed\n");
                         }
                         catch(FormatException e)
                         {
                             Console.WriteLine("\nInvalid date in event, failed to add\n");
                         }
+                        catch(EventAddBreak eb)
+                        {
+                            Console.WriteLine("\nEvent add canceled\n");
+                        }
                         break;
                     case "2":
-                        Console.WriteLine("Enter the event Title to remove:");
+                        Console.WriteLine("\nEnter the event Title to remove:");
                         string title = Console.ReadLine();
                         int found = 0;
                         for (int x = calendar.Count-1; x > -1; x--)
@@ -172,7 +204,7 @@ namespace Calendar
                         run = false;
                         break;
                     default:
-                        Console.WriteLine("Input not recognized");
+                        Console.WriteLine("\nInput not recognized\n");
                         break;
 
                 }
