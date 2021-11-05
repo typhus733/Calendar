@@ -4,23 +4,7 @@ using System.Collections.Generic;
 
 namespace Calendar
 {
-    public class EventAddBreak : Exception
-    {
-        public EventAddBreak()
-        {
-        }
-
-        public EventAddBreak(string message) : base(message)
-        {
-            Console.WriteLine(message);
-        }
-
-        public EventAddBreak(string message, Exception inner) : base(message, inner)
-        {
-        }
-    }
-
-    public class Meeting
+     public class Meeting
     {
         private string title;
         private string location;
@@ -102,7 +86,7 @@ namespace Calendar
             return currentCalendar;
         } 
 
-        static Meeting GetEvent(List<Meeting> calendar)
+        static void GetEvent(List<Meeting> calendar)
         {
             Console.WriteLine("Enter the event Title:");
             string title = Console.ReadLine();
@@ -129,12 +113,14 @@ namespace Calendar
                     }
                     else
                     {
-                        throw new EventAddBreak();
+                        Console.WriteLine("\nEvent add canceled\n");
+                        return;
                     }
                 }
             }
 
-            return newEvent;
+            calendar.Add(newEvent);
+            Console.WriteLine("\nEvent add completed successfully\n");
         }
 
         static void CalendarPrint(List<Meeting> calendar)
@@ -167,16 +153,12 @@ namespace Calendar
                     case "1":
                         try
                         {   
-                            calendar.Add(GetEvent(calendar));
-                            Console.WriteLine("\nEvent add completed\n");
+                            GetEvent(calendar);
+                            
                         }
                         catch(FormatException e)
                         {
                             Console.WriteLine("\nInvalid date in event, failed to add\n");
-                        }
-                        catch(EventAddBreak eb)
-                        {
-                            Console.WriteLine("\nEvent add canceled\n");
                         }
                         break;
                     case "2":
