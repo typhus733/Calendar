@@ -152,7 +152,7 @@ namespace Calendar
                 }
                 Console.Write("\n");
             }
-
+            Console.Write("\n");
         }
 
         static void CalendarMenu(List<Meeting> calendar)
