@@ -364,9 +364,21 @@ namespace Calendar
                         {   
                             if (calendar[x].Title.ToLower() == title.ToLower())
                             {
-                                calendar.RemoveAt(x);
-                                found = 1;
-                                Console.WriteLine("\nEvent successfully removed\n");
+                                Console.WriteLine("Delete event {0} at {1}", calendar[x].Title, calendar[x].Location);
+                                Console.Write("Enter 1 to confirm, any other key to not delete event: ");
+                                string confirm = Console.ReadLine();
+
+                                if (confirm == "1")
+                                {
+                                    calendar.RemoveAt(x);
+                                    found = 1;
+                                    Console.WriteLine("\nEvent successfully removed\n");
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                                
                             }
                         }
                         if (found == 0)
